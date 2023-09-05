@@ -1,3 +1,15 @@
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
+
+.experience__data h3 {
+    font-size: 1.1rem;
+}
+
+.btn.connect {
+    background-color: #d7509d;
+}
+
+.btn.connect:hover {
+    background-color: #af126c;
+}

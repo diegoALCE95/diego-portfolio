@@ -10,56 +10,65 @@ const last_posts = posts.slice(0, 3);
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <span class="text-xl py-1">Hey there 👋</span>
+    <h1 class="text-5xl font-bold">I'm Diego Álvarez</h1>
+    <h2 class="text-3xl py-3 font-bold">Web Developer</h2>
+
     <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
+      <p class="text-lg">
+        Since 2016, I've contributed to develop several websites for small and medium-sized companies around the globe. I've worked in E-Commerce solutions, pages such as landings, services, portfolios, blogs, NFT's, among others.
+      </p>
+
+      <p class="text-lg mt-5">
+        Following UI/UX design principles and standards, I'm able to recreate with success and high quality, the designs provided by co-workers or clients.
+      </p>
     </div>
+
     <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
-      </a>
+      <a class="btn connect" href="https://www.linkedin.com/in/diegoalce/" target="_blank">Let's connect!</a>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">Recent projects {"</>"}</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    title="Work Ninjas"
+    img="/wn-ss.jpg"
+    desc="A startup which focuses on automating back office solutions for roofing contractors. Website made with WordPress, Elementor, Slick.js"
+    url="https://workninjas.com/"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="Roof Squad"
+    img="/rsquad-ss.jpg"
+    desc="Roofing Contractor with more than 20 years of combined experience serving Texas, Louisiana and Colorado. Website made with Webflow."
+    url="https://www.roofsquad.com/"
+    badge="WEBFLOW"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    title="Monarch Roofing"
+    img="/monarch-ss.jpg"
+    desc="Monarch specializes in metal, tile, shingles and low slope roofs. Website made with WordPress, HTML, CSS, PHP & JS."
+    url="https://monarchroofingllc.com/"
+    badge="THEME DEV"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="The Bottle Depot"
+    img="/bottle-ss.jpg"
+    desc="E-commerce providing the most professional packaging solution. Website made with Shopify."
+    url="https://thebottledepot.co/"
+    badge="SHOPIFY"
   />
 
-  <div>
+  <!-- <div>
     <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
+  </div> -->
 
-  {
+  <!-- {
     last_posts.map((post) => (
       <>
         <HorizontalCard
@@ -73,5 +82,5 @@ const last_posts = posts.slice(0, 3);
         <div class="divider my-0" />
       </>
     ))
-  }
+  } -->
 </BaseLayout>
