@@ -15,5 +15,12 @@ export default defineConfig({
       cacheDir: "./.cache/image",
       logLevel: 'debug',
     }
-  )]
+  )],
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  }
 });

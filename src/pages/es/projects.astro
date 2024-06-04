@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+
+import { getRelativeLocaleUrl } from 'astro:i18n';
+---
+
+<BaseLayout title = "Projects" sideBarActiveItemID="projects">
+  <div>
+    <div class="text-3xl w-full font-bold mb-5">Trabajando En</div>
+  </div>
+
+  <HorizontalCard
+    title="Work Ninjas"
+    img="/wn-ss.jpg"
+    desc="Rehaciendo el sitio web con fines de marketing. Trabajando en este proyecto con Astro.js, Node.js, WordPress."
+    url="https://workninjas.com/"
+    badge="NUEVO"
+  />
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Proyectos Recientes</div>
+  </div>
+
+  <HorizontalCard
+    title="Nail Your Marketing"
+    img="/nym-ss.jpg"
+    desc="A startup which focuses on branding, social media, marketing and website development solutions. Website made with WordPress & Elementor."
+    url="https://nailyourmarketing.com/"
+  />
+  <HorizontalCard
+    title="Work Ninjas"
+    img="/wn-ss.jpg"
+    desc="A startup which focuses on automating back office solutions for roofing contractors. Website made with WordPress, Elementor, HTML, CSS, JS & Slick.js"
+    url="https://workninjas.com/"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Roof Squad"
+    img="/rsquad-ss.jpg"
+    desc="Roofing Contractor with more than 20 years of combined experience serving Texas, Louisiana and Colorado. Website made with Webflow."
+    url="https://www.roofsquad.com/"
+    badge="WEBFLOW"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Monarch Roofing"
+    img="/monarch-ss.jpg"
+    desc="Monarch specializes in metal, tile, shingles and low slope roofs. Website made with WordPress, HTML, CSS, PHP & JS."
+    url="https://monarchroofingllc.com/"
+    badge="THEME DEV"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Marcor NY"
+    img="/marcor-ss.jpg"
+    desc="Roofing and exterior home remodeling experts. Website made with WordPress, HTML, CSS, PHP & JS."
+    url="https://marcorny.com/"
+    badge="THEME DEV"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="TX Vision Millworks"
+    img="/txv-ss.jpg"
+    desc="Full-service millwork company that specializes in custom woodwork and finish carpentry. Website made with WordPress & Elementor."
+    url="https://www.txvisionmillworks.com/"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Roofs for Solar"
+    img="/rfs-ss.jpg"
+    desc="Roofing and solar experts. This one has a private 'portal' feature. Website made with WordPress & Elementor."
+    url="https://roofsforsolar.com/"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="The Bottle Depot"
+    img="/bottle-ss.jpg"
+    desc="E-commerce providing the most professional packaging solution. Website made with Shopify."
+    url="https://thebottledepot.co/"
+    badge="SHOPIFY"
+  />
+</BaseLayout>

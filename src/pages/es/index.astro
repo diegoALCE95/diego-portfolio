@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-12 mt-5">
+    <span class="text-xl py-1">Hola 👋</span>
+    <h1 class="text-5xl font-bold">Soy Diego Álvarez</h1>
+    <h2 class="text-3xl py-3 font-bold">Desarrollador Web</h2>
+
+    <div class="py-2">
+      <p class="text-lg">
+        Desde 2016, he contribuido al desarrollo de diversos sitios web para pequeñas y medianas empresas de todo el mundo. He trabajado en soluciones de E-Commerce, páginas como landings, servicios, portafolios, blogs, NFT's, entre otros.
+      </p>
+
+      <p class="text-lg mt-5">
+        Siguiendo los principios y estándares de diseño UI/UX, soy capaz de recrear con éxito y alta calidad los diseños proporcionados por compañeros de trabajo o clientes.
+      </p>
+    </div>
+
+    <div class="mt-8">
+      <a class="btn connect" href="https://www.linkedin.com/in/diegoalce/" target="_blank">¡Hablemos!</a>
+    </div>
+  </div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">Proyectos recientes {"</>"}</div>
+  </div>
+
+  <HorizontalCard
+    title="Nail Your Marketing"
+    img="/nym-ss.jpg"
+    desc="Una startup que se centra en soluciones de desarrollo de marcas, redes sociales, marketing y sitios web. Sitio web realizado con WordPress y Elementor."
+    url="https://nailyourmarketing.com/"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Work Ninjas"
+    img="/wn-ss.jpg"
+    desc="Una startup que se centra en la automatización de soluciones administrativas para contratistas de techado. Sitio web hecho con WordPress, Elementor, Slick.js"
+    url="https://workninjas.com/"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Roof Squad"
+    img="/rsquad-ss.jpg"
+    desc="Contratista de techos con más de 20 años de experiencia combinada, prestando servicios en Texas, Luisiana y Colorado. Sitio web realizado con Webflow."
+    url="https://www.roofsquad.com/"
+    badge="WEBFLOW"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Monarch Roofing"
+    img="/monarch-ss.jpg"
+    desc="Monarch se especializa en techos de metal, tejas y techos de baja pendiente. Sitio web realizado con WordPress, HTML, CSS, PHP y JS."
+    url="https://monarchroofingllc.com/"
+    badge="THEME DEV"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="The Bottle Depot"
+    img="/bottle-ss.jpg"
+    desc="Comercio electrónico que ofrece soluciones de envasado de botellas profesional. Sitio web realizado con Shopify."
+    url="https://thebottledepot.co/"
+    badge="SHOPIFY"
+  />
+
+  <!-- <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+  </div> -->
+
+  <!-- {
+    last_posts.map((post) => (
+      <>
+        <HorizontalCard
+          title={post.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/blog/" + post.slug}
+          target="_self"
+          badge={post.data.badge}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  } -->
+</BaseLayout>
