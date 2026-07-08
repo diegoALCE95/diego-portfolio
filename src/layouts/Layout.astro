@@ -1,0 +1,174 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  // Name-first, keyword-rich, but readable. ~55 chars.
+  title = 'Diego Álvarez — Freelance Web Developer in Colombia',
+  description = 'Diego Álvarez is a freelance web developer based in Bucaramanga, Colombia, building fast WordPress, Shopify & Webflow websites for clients worldwide since 2016.',
+} = Astro.props;
+
+// Absolute URLs (Astro.site is set in astro.config.mjs).
+const site = Astro.site ?? new URL('https://diego-portfolio-ruby.vercel.app');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL('/og-image.png', site).href;
+
+const GITHUB = 'https://github.com/diegoALCE95';
+const LINKEDIN = 'https://www.linkedin.com/in/diegoalce/';
+const WHATSAPP_TEL = '+573058602613';
+
+// Search phrases we want to be discoverable for (name variants + role + region,
+// EN & ES). Keywords are low-weight for Google today but harmless and useful
+// signals for some engines/AI crawlers.
+const keywords = [
+  'Diego Álvarez', 'Diego Alvarez', 'Diego Alvarez developer', 'Diego Álvarez desarrollador',
+  'freelance developer Colombia', 'web developer Colombia', 'desarrollador web Colombia',
+  'freelance web developer Bucaramanga', 'WordPress developer Colombia',
+  'Shopify developer', 'Webflow developer', 'desarrollador freelance Colombia',
+].join(', ');
+
+// --- Structured data (JSON-LD) --------------------------------------------
+// A linked @graph: the Person is the primary entity (drives name/knowledge-
+// panel results and AI answers), the WebSite ties the domain to that person,
+// and the ProfessionalService states plainly that Diego offers freelance web
+// development serving Colombia + worldwide — the exact claim an AI engine
+// needs to recommend him for "freelance web developers in Colombia".
+const personId = `${site.href}#diego`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: 'Diego Álvarez',
+      alternateName: ['Diego Alvarez', 'Diego Alberto Álvarez'],
+      jobTitle: 'Freelance Web Developer',
+      description,
+      url: site.href,
+      image: ogImage,
+      email: 'mailto:diego@pegateya.org',
+      telephone: WHATSAPP_TEL,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Bucaramanga',
+        addressRegion: 'Santander',
+        addressCountry: 'CO',
+      },
+      knowsLanguage: ['es', 'en'],
+      knowsAbout: [
+        'Web Development', 'Frontend Development', 'WordPress', 'WooCommerce',
+        'Shopify', 'Liquid', 'Webflow', 'JavaScript', 'PHP', 'React', 'Astro',
+        'HTML', 'CSS', 'SEO', 'Google Analytics 4', 'Google Tag Manager', 'Klaviyo',
+      ],
+      sameAs: [GITHUB, LINKEDIN],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.href}#website`,
+      url: site.href,
+      name: 'Diego Álvarez — Portfolio',
+      description,
+      inLanguage: ['en', 'es'],
+      author: { '@id': personId },
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${site.href}#service`,
+      name: 'Diego Álvarez — Freelance Web Development',
+      description:
+        'Freelance web development in Colombia — WordPress, Shopify and Webflow builds, e-commerce, landing pages and custom sites, with analytics (GA4, GTM, Klaviyo). Remote for clients worldwide.',
+      url: site.href,
+      image: ogImage,
+      provider: { '@id': personId },
+      areaServed: [
+        { '@type': 'Country', name: 'Colombia' },
+        { '@type': 'AdministrativeArea', name: 'Bucaramanga, Santander' },
+        'Worldwide',
+      ],
+      serviceType: [
+        'Web development', 'WordPress development', 'Shopify development',
+        'Webflow development', 'E-commerce development', 'Frontend development',
+      ],
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Bucaramanga',
+        addressRegion: 'Santander',
+        addressCountry: 'CO',
+      },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Diego Álvarez" />
+    <meta name="theme-color" content="#08080e" />
+
+    <!-- Crawling / indexing -->
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Bilingual: same URL serves EN & ES (client-side toggle) -->
+    <link rel="alternate" hreflang="en" href={canonical} />
+    <link rel="alternate" hreflang="es" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+
+    <!-- Geo (local relevance: Bucaramanga, Colombia) -->
+    <meta name="geo.region" content="CO-SAN" />
+    <meta name="geo.placename" content="Bucaramanga, Colombia" />
+    <meta name="geo.position" content="7.119349;-73.122742" />
+    <meta name="ICBM" content="7.119349, -73.122742" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Diego Álvarez" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Diego Álvarez — Freelance Web Developer, Bucaramanga, Colombia" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_CO" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Diego Álvarez — Freelance Web Developer, Bucaramanga, Colombia" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

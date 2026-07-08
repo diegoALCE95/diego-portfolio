@@ -1,0 +1,68 @@
+---
+import { T, rawProjects, PER_PAGE } from '../data/content.js';
+const t = T.en;
+const total = rawProjects.length;
+const totalPages = Math.ceil(total / PER_PAGE);
+const pad = (n) => String(n).padStart(2, '0');
+const showPagination = total > PER_PAGE;
+---
+
+<section id="work" class="section section--work">
+  <div class="section__head section__head--row" data-reveal>
+    <div>
+      <div class="eyebrow">// selected work</div>
+      <h2 class="section__h2" data-i18n="workHeading">{t.workHeading}</h2>
+    </div>
+    <span class="section__count">
+      <span>{total}</span> <span data-i18n="workCount">{t.workCount}</span>
+    </span>
+  </div>
+
+  <div class="projects" id="projects-grid">
+    {rawProjects.map((p, i) => (
+      <a
+        href={p.url}
+        class="card"
+        data-index={i}
+        target={p.url !== '#' ? '_blank' : undefined}
+        rel={p.url !== '#' ? 'noopener noreferrer' : undefined}
+        data-wip={p.url === '#' ? '' : undefined}
+        aria-label={p.name}
+        data-reveal
+        hidden={i >= PER_PAGE}
+      >
+        <div class="card__thumb">
+          {p.img ? (
+            <>
+              <img src={p.img} alt={`${p.name} — ${t.workHeading.toLowerCase()} preview`} loading="lazy" decoding="async" width="800" height="450" />
+            </>
+          ) : (
+            <>
+              <div class="card__thumb-bg" aria-hidden="true"></div>
+              <div class="card__shot" data-en-shot={p.shot.en} data-es-shot={p.shot.es}>[ {p.shot.en} ]</div>
+            </>
+          )}
+          <div class="card__num">{p.num}</div>
+        </div>
+        <div class="card__body">
+          <div class="card__title-row">
+            <h3 class="card__title">{p.name}</h3>
+            <span class="card__tag">{p.tag}</span>
+          </div>
+          <p class="card__desc" data-en-desc={p.desc.en} data-es-desc={p.desc.es}>{p.desc.en}</p>
+          <div class="chips">
+            {p.tech.map((tech) => <span class="chip">{tech}</span>)}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  {showPagination && (
+    <div class="pagination" id="pagination" data-total-pages={totalPages}>
+      <button type="button" class="pagination__btn" id="prev-page" aria-label="Previous page">‹</button>
+      <span class="pagination__label" id="page-label">{pad(1)} / {pad(totalPages)}</span>
+      <button type="button" class="pagination__btn" id="next-page" aria-label="Next page">›</button>
+    </div>
+  )}
+</section>

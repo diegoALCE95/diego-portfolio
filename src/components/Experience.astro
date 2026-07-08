@@ -1,0 +1,31 @@
+---
+import { T, rawExp } from '../data/content.js';
+const t = T.en;
+const pick = (v, lang) => (typeof v === 'string' ? v : v[lang]);
+---
+
+<section id="experience" class="section">
+  <div class="section__head" data-reveal>
+    <div class="eyebrow">// journey</div>
+    <h2 class="section__h2" data-i18n="expHeading">{t.expHeading}</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline__rail" aria-hidden="true"></div>
+    <div class="timeline__items">
+      {rawExp.map((e) => (
+        <div class="exp" data-reveal>
+          <div class="exp__node" aria-hidden="true"></div>
+          <div class="exp__head">
+            <h3 class="exp__role">
+              <span data-en-role={pick(e.role, 'en')} data-es-role={pick(e.role, 'es')}>{pick(e.role, 'en')}</span>
+              <span class="exp__company"> · <span data-en-company={pick(e.company, 'en')} data-es-company={pick(e.company, 'es')}>{pick(e.company, 'en')}</span></span>
+            </h3>
+            <span class="exp__period">{e.period}</span>
+          </div>
+          <p class="exp__desc" data-en-desc={e.desc.en} data-es-desc={e.desc.es}>{e.desc.en}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

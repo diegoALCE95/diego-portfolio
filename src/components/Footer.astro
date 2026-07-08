@@ -1,12 +1,9 @@
 ---
-const today = new Date();
+import { T } from '../data/content.js';
+const t = T.en;
 ---
 
-<footer class="footer footer-center block mb-5 pt-10">
-  <div class="pb-2">
-    &copy; {today.getFullYear()} Diego Álvarez C.
-  </div>
+<footer class="footer">
+  <span>© 2026 Diego Álvarez C.</span>
+  <span data-i18n="footer">{t.footer}</span>
 </footer>
-<style>
-
-</style>

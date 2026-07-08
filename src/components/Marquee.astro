@@ -1,0 +1,14 @@
+---
+import { skills } from '../data/content.js';
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      {skills.map((s) => <span class="marquee__item">{s} <span>✦</span></span>)}
+    </div>
+    <div class="marquee__group">
+      {skills.map((s) => <span class="marquee__item">{s} <span>✦</span></span>)}
+    </div>
+  </div>
+</div>

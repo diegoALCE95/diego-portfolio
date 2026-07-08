@@ -1,0 +1,46 @@
+---
+import { T } from '../data/content.js';
+const t = T.en;
+---
+
+<header id="hero" class="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="orb orb--1" id="orb1" aria-hidden="true"><div class="orb__inner"></div></div>
+  <div class="orb orb--2" id="orb2" aria-hidden="true"><div class="orb__inner"></div></div>
+
+  <div class="hero__container">
+    <div class="hero__content">
+      <div class="badge">
+        <span class="badge__dot" aria-hidden="true"></span>
+        <span data-i18n="heroBadge">{t.heroBadge}</span>
+        <span class="badge__caret" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="hero__title">
+        <span data-i18n="heroPre">{t.heroPre}</span><span class="text-gradient" data-i18n="heroHi">{t.heroHi}</span><span data-i18n="heroPost">{t.heroPost}</span>
+      </h1>
+
+      <p class="hero__sub" data-i18n="heroSub">{t.heroSub}</p>
+
+      <div class="hero__ctas">
+        <a class="btn-primary" href="#work" data-i18n="heroCtaWork">{t.heroCtaWork}</a>
+        <a class="btn-secondary" href="#experience" data-i18n="heroCtaCv">{t.heroCtaCv}</a>
+      </div>
+
+      <div class="stats">
+        <div>
+          <div class="stat__num">9+</div>
+          <div class="stat__label" data-i18n="stat1">{t.stat1}</div>
+        </div>
+        <div>
+          <div class="stat__num">200+</div>
+          <div class="stat__label" data-i18n="stat2">{t.stat2}</div>
+        </div>
+        <div>
+          <div class="stat__num">3</div>
+          <div class="stat__label" data-i18n="stat3">{t.stat3}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

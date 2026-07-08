@@ -1,0 +1,18 @@
+---
+import { T } from '../data/content.js';
+const t = T.en;
+---
+
+<section id="about" class="about">
+  <div data-reveal>
+    <div class="eyebrow">// about</div>
+    <h2 class="about__h2" data-i18n="aboutHeading">{t.aboutHeading}</h2>
+    <p class="about__p" data-i18n="aboutP1">{t.aboutP1}</p>
+    <p class="about__p" data-i18n="aboutP2">{t.aboutP2}</p>
+  </div>
+
+  <div class="portrait" data-reveal style="transition-delay:.1s">
+    <div class="portrait__bg" aria-hidden="true"></div>
+    <div class="portrait__label" data-i18n="portraitLabel">{t.portraitLabel}</div>
+  </div>
+</section>

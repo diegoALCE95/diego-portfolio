@@ -1,0 +1,23 @@
+---
+import { T, skillItems } from '../data/content.js';
+const t = T.en;
+const groups = t.skillTitles.map((title, i) => ({ title, items: skillItems[i], index: i }));
+---
+
+<section id="skills" class="section">
+  <div class="section__head" data-reveal>
+    <div class="eyebrow">// toolkit</div>
+    <h2 class="section__h2" data-i18n="skillsHeading">{t.skillsHeading}</h2>
+  </div>
+
+  <div class="skills-grid">
+    {groups.map((g) => (
+      <div class="skill-card">
+        <div class="skill-card__title" data-i18n-skilltitle={g.index}>{g.title}</div>
+        <div class="skill-card__list">
+          {g.items.map((i) => <span class="skill-card__item">{i}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

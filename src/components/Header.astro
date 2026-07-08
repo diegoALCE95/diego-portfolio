@@ -1,17 +1,32 @@
-<div
-  class="sticky lg:hidden top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm"
->
-  <div class="navbar">
-    <div class="navbar-start">
-      <label for="my-drawer" class="btn btn-square btn-ghost">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"
-          ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </label>
+---
+import { T } from '../data/content.js';
+const t = T.en;
+---
+
+<nav class="nav">
+  <div class="nav__container">
+    <div class="nav__left">
+      <a class="nav__brand" href="#hero" aria-label="Back to top">
+        <div class="nav__logo" aria-hidden="true">DA</div>
+        <span class="nav__name">Diego Álvarez</span>
+      </a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang__btn is-active" data-lang="en" aria-pressed="true">EN</button>
+        <span class="lang__sep" aria-hidden="true">|</span>
+        <button type="button" class="lang__btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
     </div>
-    <div class="navbar-center">
-      <a class="btn btn-ghost normal-case text-xl" href="/">Diego Álvarez ⚡️</a>
+
+    <button type="button" class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav__links" id="nav-links">
+      <a class="nav__link" href="#about" data-i18n="navAbout">{t.navAbout}</a>
+      <a class="nav__link" href="#work" data-i18n="navWork">{t.navWork}</a>
+      <a class="nav__link" href="#skills" data-i18n="navSkills">{t.navSkills}</a>
+      <a class="nav__link" href="#experience" data-i18n="navExp">{t.navExp}</a>
+      <a class="btn-pill" href="#contact" data-i18n="navTalk">{t.navTalk}</a>
     </div>
-    <div class="navbar-end"></div>
   </div>
-</div>
+</nav>

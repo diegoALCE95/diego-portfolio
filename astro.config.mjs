@@ -1,26 +1,7 @@
 import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import tailwind from "@astrojs/tailwind";
-
-// https://astro.build/config
-import image from "@astrojs/image";
-
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://astrofy-template.netlify.app',
-  integrations: [mdx(), sitemap(), tailwind(), image(
-    {
-      serviceEntryPoint: '@astrojs/image/sharp',
-      cacheDir: "./.cache/image",
-      logLevel: 'debug',
-    }
-  )],
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en", "es"],
-    routing: {
-      prefixDefaultLocale: false
-    }
-  }
+  site: 'https://diego-portfolio-ruby.vercel.app',
+  outDir: '/tmp/dist',
+  cacheDir: '/tmp/vite-cache',
+  vite: { cacheDir: '/tmp/vite-cache' },
 });
