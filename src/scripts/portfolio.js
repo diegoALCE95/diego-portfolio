@@ -55,33 +55,64 @@ function initLang() {
   });
 }
 
-/* --- Pagination ---------------------------------------------------------- */
+/* --- Filtering + pagination ---------------------------------------------- */
 function initPagination() {
   const grid = document.getElementById('projects-grid');
   const pager = document.getElementById('pagination');
   if (!grid) return;
 
   const cards = Array.from(grid.querySelectorAll('.card'));
-  const totalPages = Math.max(1, Math.ceil(cards.length / PER_PAGE));
   const label = document.getElementById('page-label');
+  const countNum = document.getElementById('count-num');
+  const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
   const pad = (n) => String(n).padStart(2, '0');
+
+  let filter = 'All';
   let page = 0;
+  let filtered = cards;                 // cards matching the active filter
+
+  const pageCount = () => Math.max(1, Math.ceil(filtered.length / PER_PAGE));
 
   function render() {
-    cards.forEach((card, i) => {
+    const totalPages = pageCount();
+    if (page >= totalPages) page = totalPages - 1;
+
+    // Hide everything, then reveal only the current page of the filtered set.
+    cards.forEach((card) => { card.hidden = true; });
+    filtered.forEach((card, i) => {
       const onPage = i >= page * PER_PAGE && i < page * PER_PAGE + PER_PAGE;
       card.hidden = !onPage;
-      // Re-trigger the reveal for freshly shown cards.
       if (onPage) card.classList.add('is-visible');
     });
+
+    if (countNum) countNum.textContent = String(filtered.length);
     if (label) label.textContent = `${pad(page + 1)} / ${pad(totalPages)}`;
+    if (pager) pager.hidden = filtered.length <= PER_PAGE;
   }
+
+  function applyFilter(next) {
+    filter = next;
+    filtered = filter === 'All' ? cards : cards.filter((c) => c.dataset.tag === filter);
+    page = 0;
+    render();
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      applyFilter(btn.dataset.filter);
+    });
+  });
 
   if (pager) {
     const prev = document.getElementById('prev-page');
     const next = document.getElementById('next-page');
-    prev && prev.addEventListener('click', () => { page = (page - 1 + totalPages) % totalPages; render(); scrollToWork(); });
-    next && next.addEventListener('click', () => { page = (page + 1) % totalPages; render(); scrollToWork(); });
+    prev && prev.addEventListener('click', () => { const tp = pageCount(); page = (page - 1 + tp) % tp; render(); scrollToWork(); });
+    next && next.addEventListener('click', () => { const tp = pageCount(); page = (page + 1) % tp; render(); scrollToWork(); });
   }
 
   function scrollToWork() {

@@ -5,6 +5,7 @@ const total = rawProjects.length;
 const totalPages = Math.ceil(total / PER_PAGE);
 const pad = (n) => String(n).padStart(2, '0');
 const showPagination = total > PER_PAGE;
+const filters = ['All', 'WordPress', 'WooCommerce', 'Webflow', 'Shopify'];
 ---
 
 <section id="work" class="section section--work">
@@ -13,9 +14,16 @@ const showPagination = total > PER_PAGE;
       <div class="eyebrow">// selected work</div>
       <h2 class="section__h2" data-i18n="workHeading">{t.workHeading}</h2>
     </div>
-    <span class="section__count">
-      <span>{total}</span> <span data-i18n="workCount">{t.workCount}</span>
-    </span>
+    <div class="work-controls">
+      <div class="filters" id="project-filters" role="group" aria-label="Filter projects by platform">
+        {filters.map((f, i) => (
+          <button type="button" class={`filter-btn${i === 0 ? ' is-active' : ''}`} data-filter={f} aria-pressed={i === 0 ? 'true' : 'false'}>{f}</button>
+        ))}
+      </div>
+      <span class="section__count">
+        <span id="count-num">{total}</span> <span data-i18n="workCount">{t.workCount}</span>
+      </span>
+    </div>
   </div>
 
   <div class="projects" id="projects-grid">
@@ -24,6 +32,7 @@ const showPagination = total > PER_PAGE;
         href={p.url}
         class="card"
         data-index={i}
+        data-tag={p.tag}
         target={p.url !== '#' ? '_blank' : undefined}
         rel={p.url !== '#' ? 'noopener noreferrer' : undefined}
         data-wip={p.url === '#' ? '' : undefined}
@@ -42,7 +51,7 @@ const showPagination = total > PER_PAGE;
               <div class="card__shot" data-en-shot={p.shot.en} data-es-shot={p.shot.es}>[ {p.shot.en} ]</div>
             </>
           )}
-          <div class="card__num">{p.num}</div>
+          <div class="card__num">{pad(i + 1)}</div>
         </div>
         <div class="card__body">
           <div class="card__title-row">
