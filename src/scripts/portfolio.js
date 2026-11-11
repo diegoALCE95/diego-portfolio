@@ -90,9 +90,15 @@ function initPagination() {
     if (pager) pager.hidden = filtered.length <= PER_PAGE;
   }
 
-  function applyFilter(next) {
+  // Platform filters match a card's `tag`; tech filters (data-match="tech")
+  // match any entry in the card's tech list.
+  function applyFilter(next, byTech = false) {
     filter = next;
-    filtered = filter === 'All' ? cards : cards.filter((c) => c.dataset.tag === filter);
+    filtered = filter === 'All'
+      ? cards
+      : cards.filter((c) => byTech
+        ? (c.dataset.tech || '').split('|').includes(filter)
+        : c.dataset.tag === filter);
     page = 0;
     render();
   }
@@ -104,7 +110,7 @@ function initPagination() {
         b.classList.toggle('is-active', active);
         b.setAttribute('aria-pressed', String(active));
       });
-      applyFilter(btn.dataset.filter);
+      applyFilter(btn.dataset.filter, btn.dataset.match === 'tech');
     });
   });
 
